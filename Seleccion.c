@@ -1,93 +1,93 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include<stdio.h>                                                        
+#include<stdlib.h>                                                       
 
-void Rellenar(int *vector, int size, const char *nombreArchivo)
+void Rellenar(int *vector, int size, const char *nombreArchivo          )
 {
-    FILE *archivo = fopen(nombreArchivo, "r");
+    FILE *archivo = fopen(nombreArchivo, "r"                           );
 
-    if (archivo == NULL)
+    if (archivo == NULL                                                 )
     {
-        printf("No se pudo abrir el archivo.\n");
-        return;
+        printf("No se pudo abrir el archivo.\n"                        );
+        return                                                          ;
     }
 
-    int i;
-    for (i = 0; i < size; i++)
+    int i                                                               ;
+    for (i = 0; i < size; i++                                           )
     {
-        if (fscanf(archivo, "%d", &vector[i]) != 1)
+        if (fscanf(archivo, "%d", &vector[i]) != 1                      )
         {
-            printf("Error al leer el archivo.\n");
-            break;
+            printf("Error al leer el archivo.\n"                       );
+            break                                                       ;
         }
     }
 
-    fclose(archivo);
+    fclose(archivo                                                     );
 }
 
-int ValidarN(const char *nombreArchivo)
+int ValidarN(const char *nombreArchivo                                  )
 {
-    FILE *archivo = fopen(nombreArchivo, "r");
+    FILE *archivo = fopen(nombreArchivo, "r"                           );
 
-    int contador = 0;
-    int valor;
+    int contador = 0                                                    ;
+    int valor                                                           ;
 
-    while (fscanf(archivo, "%d", &valor) == 1)
+    while (fscanf(archivo, "%d", &valor) == 1                           )
     {
-        contador++;
+        contador++                                                      ;
     }
 
-    fclose(archivo);
+    fclose(archivo                                                     );
 
-    return contador;
+    return contador                                                     ;
 }
 
-void Seleccion(int *vector, int n)
+void Seleccion(int *vector, int n                                       )
 {
-    int i, k, p, temp;
-    for(k = 0; k <= n - 2; k++)
+    int i, k, p, temp                                                   ;
+    for(k = 0; k <= n - 2; k++                                          )
     {
-        p = k;
-        for(i = k + 1; i <= n - 1; i++)
+        p = k                                                           ;
+        for(i = k + 1; i <= n - 1; i++                                  )
         {
-            if(*(vector + i) < *(vector + p))
-                p = i;
+            if(*(vector + i) < *(vector + p                            ))
+                p = i                                                   ;
         }
-        temp = *(vector + p);
-        *(vector + p) = *(vector + k);
-        *(vector + k) = temp;
+        temp = *(vector + p                                            );
+        *(vector + p) = *(vector + k                                   );
+        *(vector + k) = temp                                            ;
     }
 }
 
-void Imprimir(int *vector, int n)
+void Imprimir(int *vector, int n                                        )
 {
-    int i;
-    for(i  = 0; i < n; i++)
+    int i                                                               ;
+    for(i  = 0; i < n; i++                                              )
     {
-        printf("%i ", *(vector + i));
+        printf("%i ", *(vector + i                                    ));
     }
 
-    printf("\n\n");
+    printf("\n\n"                                                      );
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char const *argv[]                                   )
 {
-    int *vector;
-    int n, nValida;
-    scanf("%i", &n);
+    int *vector                                                         ;
+    int n, nValida                                                      ;
+    scanf("%i", &n                                                     );
 
-    vector = (int*)malloc(n*sizeof(int));
+    vector = (int*)malloc(n*sizeof(int                                ));
 
-	nValida =  ValidarN("NumerosPruebas.txt");
-    if(n > nValida)
-        printf("No hay suficientes elementos\n");
-    else
+	nValida =  ValidarN("NumerosPruebas.txt"                              );
+    if(n > nValida                                                      )
+        printf("No hay suficientes elementos\n"                        );
+    else                                                                 
     {
-        Rellenar(vector, n, "NumerosPruebas.txt");
-        Imprimir(vector, n);
-        Seleccion(vector, n);
-        Imprimir(vector, n);
+        Rellenar(vector, n, "NumerosPruebas.txt"                       );
+        Imprimir(vector, n                                             );
+        Seleccion(vector, n                                            );
+        Imprimir(vector, n                                             );
     }
     
 
-    return 0;
+    return 0                                                            ;
 }
